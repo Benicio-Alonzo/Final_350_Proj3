@@ -46,8 +46,6 @@ void fork_winner(int winner);
 void set_sched(int s);
 int tickets_owned(int);
 int transfer_tickets(int, int);
-
-//Implementations
 int mask(int m);
 int term(int pid);
 int stop(int pid);

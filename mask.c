@@ -16,7 +16,7 @@ main(int argc, char *argv[])
   }
 
   int sig_mask = atoi(argv[1]); 
-  //mask signals 
+  
   mask(sig_mask);
  
   for(;;){ 

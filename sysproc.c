@@ -26,7 +26,7 @@ int
 sys_exit(void)
 {
   exit();
-  return 0;  // not reached
+  return 0;  
 }
 
 int
@@ -86,8 +86,7 @@ sys_sleep(void)
   return 0;
 }
 
-// return how many clock tick interrupts have occurred
-// since start.
+
 int
 sys_uptime(void)
 {
@@ -101,9 +100,9 @@ sys_uptime(void)
 
 int sys_shutdown(void)
 {
-  /* Either of the following will work. Does not harm to put them together. */
-  outw(0xB004, 0x0|0x2000); // working for old qemu
-  outw(0x604, 0x0|0x2000); // working for newer qemu
+  
+  outw(0xB004, 0x0|0x2000); 
+  outw(0x604, 0x0|0x2000); 
   
   return 0;
 }
@@ -126,7 +125,7 @@ sys_chpr(void)
   return chpr(pid, pr);
 }
 
-//Implementation
+
 int
 sys_term(void)
 {
@@ -166,7 +165,7 @@ sys_interrupt(void)
     return -1;
   return sigint(pid);  
 }
-//Extra Credit
+
 int
 sys_fgproc(void)
 {

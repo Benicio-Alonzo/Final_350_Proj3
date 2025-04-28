@@ -10,26 +10,26 @@ struct sleeplock;
 struct stat;
 struct superblock;
 
-//extra credit
+
 int fgproc(void);
 
 
-// bio.c
+
 void            binit(void);
 struct buf*     bread(uint, uint);
 void            brelse(struct buf*);
 void            bwrite(struct buf*);
 
-// console.c
+
 void            consoleinit(void);
 void            cprintf(char*, ...);
 void            consoleintr(int(*)(void));
 void            panic(char*) __attribute__((noreturn));
 
-// exec.c
+
 int             exec(char*, char**);
 
-// file.c
+
 struct file*    filealloc(void);
 void            fileclose(struct file*);
 struct file*    filedup(struct file*);
@@ -38,7 +38,7 @@ int             fileread(struct file*, char*, int n);
 int             filestat(struct file*, struct stat*);
 int             filewrite(struct file*, char*, int n);
 
-// fs.c
+
 void            readsb(int dev, struct superblock *sb);
 int             dirlink(struct inode*, char*, uint);
 struct inode*   dirlookup(struct inode*, char*, uint*);
@@ -57,26 +57,26 @@ int             readi(struct inode*, char*, uint, uint);
 void            stati(struct inode*, struct stat*);
 int             writei(struct inode*, char*, uint, uint);
 
-// ide.c
+
 void            ideinit(void);
 void            ideintr(void);
 void            iderw(struct buf*);
 
-// ioapic.c
+
 void            ioapicenable(int irq, int cpu);
 extern uchar    ioapicid;
 void            ioapicinit(void);
 
-// kalloc.c
+
 char*           kalloc(void);
 void            kfree(char*);
 void            kinit1(void*, void*);
 void            kinit2(void*, void*);
 
-// kbd.c
+
 void            kbdintr(void);
 
-// lapic.c
+
 void            cmostime(struct rtcdate *r);
 int             lapicid(void);
 extern volatile uint*    lapic;
@@ -85,28 +85,28 @@ void            lapicinit(void);
 void            lapicstartap(uchar, uint);
 void            microdelay(int);
 
-// log.c
+
 void            initlog(int dev);
 void            log_write(struct buf*);
 void            begin_op();
 void            end_op();
 
-// mp.c
+
 extern int      ismp;
 void            mpinit(void);
 
-// picirq.c
+
 void            picenable(int);
 void            picinit(void);
 
-// pipe.c
+
 int             pipealloc(struct file**, struct file**);
 void            pipeclose(struct pipe*, int);
 int             piperead(struct pipe*, char*, int);
 int             pipewrite(struct pipe*, char*, int);
 
 //PAGEBREAK: 16
-// proc.c
+
 int             cpuid(void);
 void            exit(void);
 int             fork(void);
@@ -125,10 +125,10 @@ int             wait(void);
 void            wakeup(void*);
 void            yield(void);
 
-// swtch.S
+
 void            swtch(struct context**, struct context*);
 
-// spinlock.c
+
 void            acquire(struct spinlock*);
 void            getcallerpcs(void*, uint*);
 int             holding(struct spinlock*);
@@ -137,13 +137,13 @@ void            release(struct spinlock*);
 void            pushcli(void);
 void            popcli(void);
 
-// sleeplock.c
+
 void            acquiresleep(struct sleeplock*);
 void            releasesleep(struct sleeplock*);
 int             holdingsleep(struct sleeplock*);
 void            initsleeplock(struct sleeplock*, char*);
 
-// string.c
+
 int             memcmp(const void*, const void*, uint);
 void*           memmove(void*, const void*, uint);
 void*           memset(void*, int, uint);
@@ -152,7 +152,7 @@ int             strlen(const char*);
 int             strncmp(const char*, const char*, uint);
 char*           strncpy(char*, const char*, int);
 
-// syscall.c
+
 int             argint(int, int*);
 int             argptr(int, char**, int);
 int             argstr(int, char**);
@@ -160,21 +160,21 @@ int             fetchint(uint, int*);
 int             fetchstr(uint, char**);
 void            syscall(void);
 
-// timer.c
+
 void            timerinit(void);
 
-// trap.c
+
 void            idtinit(void);
 extern uint     ticks;
 void            tvinit(void);
 extern struct spinlock tickslock;
 
-// uart.c
+
 void            uartinit(void);
 void            uartintr(void);
 void            uartputc(int);
 
-// vm.c
+
 void            seginit(void);
 void            kvmalloc(void);
 pde_t*          setupkvm(void);
@@ -190,9 +190,9 @@ void            switchkvm(void);
 int             copyout(pde_t*, uint, void*, uint);
 void            clearpteu(pde_t *pgdir, char *uva);
 
-// number of elements in fixed-size array
+
 #define NELEM(x) (sizeof(x)/sizeof((x)[0]))
 
-// ZYF: os project - ps syscalls
+
 int             cps(void);
 int             chpr(int pid, int priority);

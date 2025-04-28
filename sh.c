@@ -4,7 +4,7 @@
 #include "user.h"
 #include "fcntl.h"
 
-// Parsed command representation
+
 #define EXEC  1
 #define REDIR 2
 #define PIPE  3
@@ -49,20 +49,17 @@ struct backcmd {
   struct cmd *cmd;
 };
 
-int fork1(void);  // Fork but panics on failure.
+int fork1(void);  
 void panic(char*);
 struct cmd *parsecmd(char*);
 
-// Execute cmd.  Never returns.
+
 void
 runcmd(struct cmd *cmd)
 {
-  //int p[2];
-  //struct backcmd *bcmd;
+  
   struct execcmd *ecmd;
-  //struct listcmd *lcmd;
-  //struct pipecmd *pcmd;
-  //struct redircmd *rcmd;
+  
   
   if(cmd == 0)
     exit();
@@ -104,7 +101,7 @@ getcmd(char *buf, int nbuf)
   printf(2, "$ ");
   memset(buf, 0, nbuf);
   gets(buf, nbuf);
-  if(buf[0] == 0) // EOF
+  if(buf[0] == 0) 
     return -1;
   return 0;
 }
@@ -116,14 +113,14 @@ main(void)
 {
   static char buf[100];
   int fd;
-  // Ensure that three file descriptors are open.
+  
   while((fd = open("console", O_RDWR)) >= 0){
     if(fd >= 3){
       close(fd);
       break;
     }
   }
-  // Read and run input commands.
+  
   while(getcmd(buf, sizeof(buf)) >= 0){
     if(buf[0] == 'c' && buf[1] == 'd' && buf[2] == ' '){
       buf[strlen(buf)-1] = 0;
